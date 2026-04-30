@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dra. Lauane Trombetta | Estética Regenerativa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c5a386;
+            --secondary: #f9f6f2;
+            --text-dark: #2d2d2d;
+            --text-light: #666666;
+            --white: #ffffff;
+            --accent: #e8ded3;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        .serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 1000;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--secondary);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .btn-cta {
+            background: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 0;
+            text-decoration: none;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .hero {
+            height: 60vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+                url('https://images.unsplash.com/photo-1552693673-1bf958298935?auto=format&fit=crop&q=80&w=1200') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 8%;
+            margin-top: 60px;
+        }
+
+        .hero span {
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        section {
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bg-cream {
+            background-color: var(--secondary);
+            max-width: 100%;
+        }
+
+        .category-title {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--primary);
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+            color: var(--primary);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .treatment-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .treatment-card {
+            background: var(--white);
+            border: 1px solid var(--accent);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .treatment-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .treatment-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .treatment-card p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 15px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            transition: var(--transition);
+        }
+
+        .faq-item {
+            border-top: 1px solid #f0f0f0;
+            padding: 12px 0;
+            cursor: pointer;
+        }
+
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 600;
+            align-items: center;
+        }
+
+        .faq-a {
+            display: none;
+            padding-top: 8px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        .faq-item.active .faq-a {
+            display: block;
+        }
+
+        .results-gallery {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .result-item {
+            background: white;
+            padding: 15px;
+            border: 1px solid var(--accent);
+        }
+
+        .result-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .result-tag {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* FLOATING BUTTONS */
+        .floating-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 9999;
+        }
+
+        .wa-link,
+        .insta-link {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .wa-link {
+            background: #25d366;
+        }
+
+        .insta-link {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .wa-link:hover,
+        .insta-link:hover {
+            transform: scale(1.1);
+        }
+
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .treatment-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .results-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hero {
+                height: 75vh;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .about-container {
+                display: flex;
+                align-items: center;
+                gap: 50px;
+                text-align: left;
+            }
+
+            .floating-container {
+                bottom: 30px;
+                right: 30px;
+            }
+
+            .wa-link,
+            .insta-link {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <div class="logo" onclick="window.scrollTo(0,0)">Lauane Trombetta</div>
+            <ul class="nav-links">
+                <li><a href="#sobre"
+                        style="text-decoration:none; color:inherit; font-size: 0.7rem; text-transform: uppercase;">A
+                        Dra</a></li>
+                <li><a href="#firmeza"
+                        style="text-decoration:none; color:inherit; font-size: 0.7rem; text-transform: uppercase;">Tratamentos</a>
+                </li>
+                <li><a href="#provas-reais"
+                        style="text-decoration:none; color:inherit; font-size: 0.7rem; text-transform: uppercase;">Resultados</a>
+                </li>
+            </ul>
+            <a href="https://wa.me/5511999999999" class="btn-cta">Agendar</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <span>A Ciência do Natural</span>
+        <h1>Gerenciamento do Envelhecimento com Identidade</h1>
+        <p>Revele a sua melhor versão através da Estética Regenerativa.</p>
+    </section>
+
+    <section id="sobre" class="bg-cream">
+        <div class="about-container">
+            <div style="flex: 1; text-align: center; margin-bottom: 30px;">
+                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800"
+                    alt="Dra Lauane"
+                    style="width: 100%; max-width: 350px; border: 1px solid var(--accent); padding: 10px; background: white;">
+            </div>
+            <div style="flex: 1.5;">
+                <span style="color: var(--primary); font-size: 0.7rem; letter-spacing: 2px;">OLHAR ESPECIALIZADO</span>
+                <h2 style="font-size: 2.2rem; margin: 10px 0;">Dra. Lauane Trombetta</h2>
+                <p class="serif" style="font-size: 1.2rem; color: var(--primary); margin-bottom: 20px;">"Minha missão é
+                    tratar as células para que o tempo seja apenas um detalhe, não um peso."</p>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Com atuação focada em Jundiaí-SP, a Dra. Lauane
+                    defende que a beleza real nasce da saúde dos tecidos. Seu protocolo une tecnologia e sensibilidade
+                    para **gerenciar o envelhecimento** de forma preventiva e personalizada, garantindo que você nunca
+                    perca sua essência no espelho.</p>
+                <a href="https://wa.me/5511999999999" class="btn-cta"
+                    style="display: inline-block; margin-top: 10px;">Entenda o Protocolo</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="firmeza">
+        <div class="category-title">Estrutura e Firmeza</div>
+        <div class="treatment-grid">
+            <div class="treatment-card">
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=800"
+                    alt="Bioestimuladores">
+                <div class="card-content">
+                    <h3>Bioestimuladores de Colágeno</h3>
+                    <p>O segredo da "poupança de colágeno". Tratamos a flacidez estimulando sua própria pele a se
+                        renovar.</p>
+                    <div class="faq-item">
+                        <div class="faq-q">O resultado é imediato? <span>+</span></div>
+                        <div class="faq-a">O pico de produção ocorre em 3 meses, tratando a causa da flacidez de dentro
+                            para fora.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Dói muito? <span>+</span></div>
+                        <div class="faq-a">Trabalhamos com microcânulas e anestesia local, garantindo um procedimento
+                            extremamente tolerável.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Sculptra ou Radiesse? <span>+</span></div>
+                        <div class="faq-a">A escolha depende da sua estrutura facial; definimos o melhor para você na
+                            consulta.</div>
+                    </div>
+                    <a href="#provas-reais" class="btn-outline">Ver Transformações</a>
+                </div>
+            </div>
+            <div class="treatment-card">
+                <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=800"
+                    alt="Preenchimento">
+                <div class="card-content">
+                    <h3>Estruturação Facial</h3>
+                    <p>Não é sobre volumizar, é sobre sustentar. Repomos os pilares faciais que cedem com o passar dos
+                        anos.</p>
+                    <div class="faq-item">
+                        <div class="faq-q">Vou ficar com o rosto largo? <span>+</span></div>
+                        <div class="faq-a">Pelo contrário. O foco é a sustentação óssea para um efeito lifting, não para
+                            "encher" o rosto.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">O procedimento é seguro? <span>+</span></div>
+                        <div class="faq-a">Sim, utilizamos apenas ácido hialurônico padrão ouro com técnica de precisão
+                            anatômica.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Quanto tempo para ver o final? <span>+</span></div>
+                        <div class="faq-a">Imediato, mas após 15 dias, com a acomodação do produto, o resultado fica
+                            ainda mais natural.</div>
+                    </div>
+                    <a href="#provas-reais" class="btn-outline">Ver Transformações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">Refinamento e Contorno</div>
+        <div class="treatment-grid">
+            <div class="treatment-card">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=800"
+                    alt="Lábios">
+                <div class="card-content">
+                    <h3>Arquitetura Labial</h3>
+                    <p>Lábios que conversam com seu rosto. Foco em hidratação, contorno e volume elegante.</p>
+                    <div class="faq-item">
+                        <div class="faq-q">Vou ficar com "boca de pato"? <span>+</span></div>
+                        <div class="faq-a">Absolutamente não. Respeitamos a proporção áurea e a anatomia individual de
+                            cada paciente.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Posso escolher o volume? <span>+</span></div>
+                        <div class="faq-a">Sim, o planejamento é conjunto, sempre buscando a harmonia com o restante do
+                            seu rosto.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">A sensibilidade muda? <span>+</span></div>
+                        <div class="faq-a">A sensibilidade permanece intacta após o período inicial de cicatrização.
+                        </div>
+                    </div>
+                    <a href="#provas-reais" class="btn-outline">Ver Transformações</a>
+                </div>
+            </div>
+            <div class="treatment-card">
+                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=800"
+                    alt="Olheiras">
+                <div class="card-content">
+                    <h3>Revitalização de Olheiras</h3>
+                    <p>O fim do aspecto de cansaço constante. Tratamos a depressão do olhar com delicadeza.</p>
+                    <div class="faq-item">
+                        <div class="faq-q">Fica roxo? <span>+</span></div>
+                        <div class="faq-a">Pode haver um leve hematoma, mas o uso de microcânulas minimiza muito esse
+                            risco.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Resolve o tom escuro? <span>+</span></div>
+                        <div class="faq-a">Melhora o aspecto de sombra. Tons pigmentares podem precisar de associação
+                            com lasers.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Dói? <span>+</span></div>
+                        <div class="faq-a">É um dos procedimentos mais tranquilos da clínica, com dor praticamente nula.
+                        </div>
+                    </div>
+                    <a href="#provas-reais" class="btn-outline">Ver Transformações</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">Saúde e Expressão</div>
+        <div class="treatment-grid">
+            <div class="treatment-card">
+                <img src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800"
+                    alt="Botox">
+                <div class="card-content">
+                    <h3>Toxina Botulínica</h3>
+                    <p>Prevenção e repouso muscular. Suavizamos as rugas sem congelar suas emoções.</p>
+                    <div class="faq-item">
+                        <div class="faq-q">Vou ficar "congelada"? <span>+</span></div>
+                        <div class="faq-a">Nosso foco é o 'Baby Botox' ou técnica natural, preservando seus movimentos
+                            expressivos.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Com qual idade começar? <span>+</span></div>
+                        <div class="faq-a">O ideal é preventivo, antes que a linha dinâmica se torne uma ruga estática
+                            marcada.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Dura quanto tempo? <span>+</span></div>
+                        <div class="faq-a">Geralmente de 4 a 6 meses, variando conforme seu metabolismo e estilo de
+                            vida.</div>
+                    </div>
+                    <a href="#provas-reais" class="btn-outline">Ver Transformações</a>
+                </div>
+            </div>
+            <div class="treatment-card">
+                <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&q=80&w=800"
+                    alt="Skinbooster">
+                <div class="card-content">
+                    <h3>Skinbooster & Qualidade de Pele</h3>
+                    <p>Beleza que vem do brilho. Hidratação injetável que devolve o viço que cremes não alcançam.</p>
+                    <div class="faq-item">
+                        <div class="faq-q">Substitui o hidratante? <span>+</span></div>
+                        <div class="faq-a">Ele complementa, tratando as camadas mais profundas onde o creme não penetra.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Quantas sessões preciso? <span>+</span></div>
+                        <div class="faq-a">O protocolo inicial costuma ser de 3 sessões para um resultado radiante.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-q">Pode fazer no verão? <span>+</span></div>
+                        <div class="faq-a">Sim! É excelente para recuperar a pele da agressão solar e do ressecamento.
+                        </div>
+                    </div>
+                    <a href="#provas-reais" class="btn-outline">Ver Transformações</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="provas-reais" class="bg-cream">
+        <div class="category-title">Resultados Reais</div>
+        <div class="results-gallery">
+            <div class="result-item">
+                <span class="result-tag">Pele Renovada</span>
+                <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&q=80&w=600"
+                    alt="Resultado">
+                <p style="font-size: 0.75rem; color: var(--text-light);">Luminosidade e viço após Protocolo de
+                    Regeneração.</p>
+            </div>
+            <div class="result-item">
+                <span class="result-tag">Sustentação Sutil</span>
+                <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=600"
+                    alt="Resultado">
+                <p style="font-size: 0.75rem; color: var(--text-light);">Gerenciamento de terço médio e contorno
+                    mandibular.</p>
+            </div>
+            <div class="result-item">
+                <span class="result-tag">Arte Labial</span>
+                <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=600"
+                    alt="Resultado">
+                <p style="font-size: 0.75rem; color: var(--text-light);">Escultura e hidratação com naturalidade
+                    absoluta.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="onde-estamos">
+        <div class="category-title">Onde Estamos</div>
+        <div style="display: flex; flex-direction: column; gap: 30px; align-items: center;">
+            <div style="text-align: center; max-width: 600px;">
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Atendimento em Jundiaí</h3>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px;">
+                    Rua [Nome da Rua], [Número] - [Bairro]<br>
+                    Jundiaí - SP | Edifício [Nome do Edifício se houver]
+                </p>
+                <a href="https://maps.app.goo.gl/uX3L3b1z9Q9" target="_blank" class="btn-outline"
+                    style="display: inline-block; padding: 12px 25px;">Abrir no GPS</a>
+            </div>
+
+            <div style="width: 100%; height: 350px; border: 1px solid var(--accent); padding: 5px; background: white;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58614.15617265889!2d-46.94272183884399!3d-23.2089470984856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf269229c15857%3A0xc47e3a89e6f3d9f3!2sJundia%C3%AD%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1714500000000!5m2!1spt-BR!2sbr"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #1a1a1a; color: white; padding: 40px 5%; text-align: center; font-size: 0.7rem;">
+        <p>DRA. LAUANE TROMBETTA | ESTÉTICA REGENERATIVA</p>
+        <p style="opacity: 0.5; margin-top: 10px;">Jundiaí - São Paulo | © 2026</p>
+    </footer>
+
+    <!-- BOTÕES FLUTUANTES -->
+    <div class="floating-container">
+        <a href="https://www.instagram.com/esteticalautrombetta" class="insta-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.282.11-.705.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+            </svg>
+        </a>
+        <a href="https://wa.me/5511999999999" class="wa-link" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                <path
+                    d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.061 3.972L0 16l4.204-1.102a7.873 7.873 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
