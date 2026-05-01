@@ -1,0 +1,20 @@
+{
+  "addParentData": false,
+  "directUrls": [
+    "https://www.instagram.com/esteticalautrombetta/"
+  ],
+  "expandCaptions": true,
+  "includeComments": false,
+  "maxDelay": 10,
+  "maxRequestRetries": 3,
+  "minDelay": 5,
+  "requestProxy": {
+    "useApifyProxy": true,
+    "apifyProxyGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  "resultsLimit": 100,
+  "resultsType": "posts",
+  "searchType": "hashtag"
+}
