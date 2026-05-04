@@ -36,6 +36,7 @@
             line-height: 1.6;
             background-color: var(--white);
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
         h1,
@@ -95,8 +96,7 @@
 
         .hero {
             height: 70vh;
-            /* Imagem atualizada: Procedimento estético, ambiente clínico organizado, tons de leveza e higiene */
-            background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3)),
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4)),
                 url('https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&q=80&w=1600') center/cover;
             display: flex;
             flex-direction: column;
@@ -105,15 +105,17 @@
             text-align: center;
             padding: 0 8%;
             margin-top: 60px;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
         }
 
         .hero span {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--primary);
+            color: #4a4238;
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 700;
+            text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.8);
         }
 
         .hero h1 {
@@ -248,7 +250,6 @@
             font-weight: bold;
         }
 
-        /* FLOATING BUTTONS */
         .floating-container {
             position: fixed;
             bottom: 20px;
@@ -281,9 +282,16 @@
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
-        .wa-link:hover,
-        .insta-link:hover {
-            transform: scale(1.1);
+        /* --- NOVAS CLASSES PARA EFEITO DE REVELAÇÃO --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (min-width: 768px) {
@@ -354,7 +362,8 @@
         <p>Revele a sua melhor versão através da Estética Regenerativa.</p>
     </section>
 
-    <section id="sobre" class="bg-cream">
+    <!-- Adicionada classe reveal -->
+    <section id="sobre" class="bg-cream reveal">
         <div class="about-container">
             <div style="flex: 1; text-align: center; margin-bottom: 30px;">
                 <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&q=80&w=800"
@@ -376,7 +385,8 @@
         </div>
     </section>
 
-    <section id="firmeza">
+    <!-- Adicionada classe reveal -->
+    <section id="firmeza" class="reveal">
         <div class="category-title">Estrutura e Firmeza</div>
         <div class="treatment-grid">
             <div class="treatment-card">
@@ -536,7 +546,8 @@
         </div>
     </section>
 
-    <section id="provas-reais" class="bg-cream">
+    <!-- Adicionada classe reveal -->
+    <section id="provas-reais" class="bg-cream reveal">
         <div class="category-title">Resultados Reais</div>
         <div class="results-gallery">
             <div class="result-item">
@@ -563,7 +574,8 @@
         </div>
     </section>
 
-    <section id="onde-estamos">
+    <!-- Adicionada classe reveal -->
+    <section id="onde-estamos" class="reveal">
         <div class="category-title">Onde Estamos</div>
         <div style="display: flex; flex-direction: column; gap: 30px; align-items: center;">
             <div style="text-align: center; max-width: 600px;">
@@ -591,7 +603,6 @@
         <p style="opacity: 0.5; margin-top: 10px;">Jundiaí - São Paulo | © 2026</p>
     </footer>
 
-    <!-- BOTÕES FLUTUANTES -->
     <div class="floating-container">
         <a href="https://www.instagram.com/esteticalautrombetta" class="insta-link" target="_blank">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
@@ -608,6 +619,7 @@
     </div>
 
     <script>
+        // Scripts originais
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 item.classList.toggle('active');
@@ -626,6 +638,23 @@
                 }
             });
         });
+
+        // --- NOVO SCRIPT PARA REVELAR SEÇÕES AO ROLAR ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150; // Distância para ativar o efeito
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Executa uma vez ao carregar para mostrar o que já estiver na tela
+        window.addEventListener("load", reveal);
     </script>
 </body>
 
